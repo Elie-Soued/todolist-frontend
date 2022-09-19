@@ -1,38 +1,82 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --colorGreen: #93e24e;
+  --colorWhite: white;
+  --colorRed: #e66161;
+  --colorPaleRed: #e9c0c0;
+  --font_Roboto: "Roboto Slab", serif;
+  --font_Rubik: "Rubik", sans-serif;
+}
+
+/* fontsinfo: https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab&sidebar.open=true&selection.family=Roboto+Slab:wght@400;700|Rubik:wght@700
+"Rubik" is for Bold 700 for the Titel
+"Roboto slab" is for Bold 700 and Regular 400
+*/
+
+.main {
+  margin: 2em auto;
+  padding: 2em 9em;
+  max-width: 40rem;
+  min-height: 90vh;
+  background-color: var(--colorRed);
+  font-size: 16px;
+  font-family: var(--font_Roboto);
+  text-align: left;
+  border-radius: 30px;
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 1.6em;
+  font-family: var(--font_Rubik);
+  text-transform: capitalize;
+  color: var(--colorWhite);
+}
+
+h1 > span {
+  display: block;
+}
+
+h1 > span:nth-child(2) {
+  margin: -13px 0px -11px -4px;
+  font-size: 2em;
+  text-transform: lowercase;
+  color: var(--colorGreen);
+}
+
+#instructions {
+  list-style-position: inside;
+  padding: 0;
+  max-width: 380px;
+  font-size: 0.9rem;
+  line-height: 1.5em;
+  color: var(--colorWhite);
+}
+
+.main p {
+  margin: 2em 0 0 0;
+  font-size: 0.9em;
+  color: var(--colorPaleRed);
+}
+
+.license {
+  display: block;
+  opacity: 0.8;
+  margin-top: 6em;
+  width: 100%;
+  font-size: 0.8em;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.license > a {
+  color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* responsive Styling for Mobile devices*/
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 0 2em 0 2em;
   }
 }

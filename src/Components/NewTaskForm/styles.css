@@ -1,0 +1,53 @@
+.inputArea {
+  list-style-type: none;
+  align-items: center;
+  display: flex;
+  transition: 0.2s;
+  margin-top: 1em;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  height: 3em;
+  background-color: var(--colorPaleRed);
+  font-size: 18px;
+}
+.inputArea input {
+  flex-grow: 1;
+  overflow: hidden;
+  border: unset;
+  margin: 0 1em;
+  background: unset;
+  font-size: 0.8em;
+  font-family: inherit;
+}
+.inputArea input:focus {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.inputArea input:focus::placeholder {
+  color: transparent;
+}
+.inputArea button {
+  align-self: stretch;
+  border: unset;
+  border-left: solid 1px var(--colorRed);
+  border-radius: 0 6px 6px 0;
+  padding: 0.6em 1.5em;
+  background: unset;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+}
+.inputArea button:hover {
+  transition: all 0.25s;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* responsive Styling for Mobile devices*/
+@media only screen and (min-width: 450px) {
+  .inputArea input {
+    font-size: 1em;
+  }
+}

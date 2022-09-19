@@ -1,0 +1,105 @@
+.task {
+  list-style-type: none;
+  display: flex;
+  align-items: stretch;
+  transition: 0.2s;
+  margin-top: 1em;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  height: 3em;
+  border-radius: 6px;
+  background-color: var(--colorWhite);
+  font-size: 18px;
+}
+
+.task:hover {
+  transition: all 0.25s;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 14px 28px, rgba(0, 0, 0, 0.5) 0px 5px 5px;
+}
+
+.text {
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  padding: 0em 1em;
+  cursor: pointer;
+  font-size: 0.8em;
+  line-height: 1.5em;
+}
+
+input.text {
+  align-self: center;
+  overflow: hidden;
+  border: unset;
+  margin: 0em 1em;
+  border-bottom: solid rgb(143, 134, 134) 1px;
+  padding: 0;
+  background: unset;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.bttn {
+  flex-shrink: 0;
+  border: none;
+  width: 4em;
+  height: 100%;
+  background-size: 1.2em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.bttn:focus {
+  outline-style: none;
+}
+
+.confirm {
+  background-image: url(../../img/check-solid.svg);
+}
+.abort {
+  border-radius: 0 6px 6px 0;
+  background-image: url(../../img/times-solid.svg);
+  background-size: 1.1em;
+}
+.edit {
+  background-image: url(../../img/pen-solid.svg);
+}
+.delete {
+  border-radius: 0 6px 6px 0;
+  background-image: url(../../img/trash-solid.svg);
+  background-size: 1.1em;
+}
+.bttn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.task.checked {
+  padding: 0 0 0 40px;
+  background-color: rgba(125, 77, 77, 0.5);
+}
+
+.task.checked > .text {
+  opacity: 0.7;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.task.checked > .edit {
+  display: none;
+}
+
+.task.editMode {
+  border: 1px solid black;
+}
+
+/* responsive Styling for Mobile devices*/
+@media only screen and (min-width: 450px) {
+  .text {
+    font-size: 1em;
+  }
+}

@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { TodoList } from "./Components/TodoList/TodoList.js";
+import React, { useState, useEffect } from "react";
+import { doRequest, URL } from "./ServiceUtils";
 
-function App() {
+export default function App() {
+  const [initialTodos, setInitialTodos] = useState([]);
+
+  const getAllTodos = async () => {
+    doRequest("get", URL).then((result) => {
+      const todoList = result?.data.data || [];
+      todoList.sort((a, b) => (a.id > b.id ? 1 : -1));
+      setInitialTodos([...todoList]);
+    });
+  };
+
+  useEffect(() => {
+    getAllTodos();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <h1>
+        <span>My</span>
+        <span>todo</span>
+        <span>LIST</span>
+      </h1>
+
+      {initialTodos.length ? (
+        <>
+          <TodoList todos={initialTodos}></TodoList>
+        </>
+      ) : (
+        ""
+      )}
+      <i className="license">
+        icons by fontawesome -{" "}
+        <a href="https://fontawesome.com/license">license</a>
+      </i>
     </div>
   );
 }
-
-export default App;
