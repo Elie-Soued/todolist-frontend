@@ -64,6 +64,7 @@ h3 > span:nth-child(2) {
   color: var(--colorGreen);
   text-decoration: none;
   font-family: var(--font_Roboto);
+  cursor: pointer;
 }
 
 .black {
@@ -98,6 +99,9 @@ h3 > span:nth-child(2) {
   outline-style: none;
 }
 
+.pilou4 {
+  background-color: none;
+}
 /* .inputArea {
   list-style-type: none;
   align-items: center;

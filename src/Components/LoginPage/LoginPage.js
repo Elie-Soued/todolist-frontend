@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../NewTaskForm/styles.css";
 import "./style.css";
 import "../TodoTask/styles.css";
 export default function LoginPage() {
+  let [username, setUsername] = useState("");
+  let [password, setPassword] = useState("");
+  let [submitButton, setSubmitButton] = useState("Login");
+
+  const createAccount = () => {
+    setSubmitButton("Register");
+  };
+
   return (
     <>
       <div className="main ">
@@ -11,19 +19,47 @@ export default function LoginPage() {
           <span>todo</span>
           <span>LIST</span>
         </h1>
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const userNameErrorMsg =
+              "Username should be between 5 to 15 characters and can only contain numeric digits, letters and white space";
+            const passwordErrorMsg =
+              "Password should be between 7 to 15 characters and contain at least one numeric digit and a special character";
+            const userNamePattern = /^[a-zA-Z0-9/\s/ ]{5,15}$/;
+            const passwordPattern =
+              /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+
+            if (!userNamePattern.test(username)) {
+              alert(userNameErrorMsg);
+            } else if (!passwordPattern.test(password)) {
+              alert(passwordErrorMsg);
+            } else {
+              setUsername("");
+              setPassword("");
+            }
+          }}
+        >
           <div className="pilou">
             <input
               className="pilou3"
+              value={username}
               type="text"
               maxlength="40"
               placeholder="Enter username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
             />
             <input
               className="pilou3"
+              value={password}
               type="text"
               maxlength="40"
               placeholder="Enter Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
 
             <h4 className="forgotPassword">
@@ -34,7 +70,7 @@ export default function LoginPage() {
               </span>
             </h4>
             <button className="pilou3" type="submit">
-              Login
+              {submitButton}
             </button>
           </div>
         </form>
@@ -46,9 +82,14 @@ export default function LoginPage() {
           <h3>
             <span>
               {" "}
-              <a className="green" href="https://fontawesome.com/license">
-                create an account
-              </a>{" "}
+              <h3
+                className="green"
+                onClick={() => {
+                  createAccount();
+                }}
+              >
+                Create an account
+              </h3>{" "}
             </span>
           </h3>
         </div>
