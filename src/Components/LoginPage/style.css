@@ -1,4 +1,104 @@
-.inputArea {
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2em auto;
+  padding: 2em 9em;
+  max-width: 40rem;
+  min-height: 90vh;
+  background-color: var(--colorRed);
+  font-size: 16px;
+  font-family: var(--font_Roboto);
+  /* text-align: left; */
+  border-radius: 30px;
+}
+
+button {
+  text-align: center;
+}
+
+.pilou {
+  display: flex;
+  flex-direction: column;
+}
+
+.pilou3 {
+  text-align: center;
+  list-style-type: none;
+  font-family: var(--font_Roboto);
+  align-items: center;
+  transition: 0.2s;
+  margin-top: 1em;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  height: 3em;
+  background-color: var(--colorPaleRed);
+  font-size: 18px;
+}
+
+h3 {
+  font-family: var(--font_Rubik);
+  text-transform: capitalize;
+  color: var(--colorWhite);
+}
+
+h3 > span {
+  display: block;
+}
+
+h3 > span:nth-child(2) {
+  margin: -13px 0px -11px -4px;
+  font-size: 2em;
+  text-transform: lowercase;
+  color: var(--colorGreen);
+}
+
+.forgotPassword {
+  text-align: center;
+}
+
+.green {
+  color: var(--colorGreen);
+  text-decoration: none;
+  font-family: var(--font_Roboto);
+}
+
+.black {
+  color: black;
+  text-decoration: none;
+}
+
+.createAccount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font_Roboto);
+}
+
+.showPassword {
+  background-image: url(../../img/eye-solid.svg);
+}
+
+.bttn {
+  flex-shrink: 0;
+  border: none;
+  width: 4em;
+  height: 100%;
+  background-size: 1.2em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.bttn:focus {
+  outline-style: none;
+}
+
+/* .inputArea {
   list-style-type: none;
   align-items: center;
   display: flex;
@@ -12,17 +112,12 @@
   height: 3em;
   background-color: var(--colorPaleRed);
   font-size: 18px;
-}
-
-.pilou {
-  height: 100vh;
-  border: 4px dashed red;
-}
+} */
 
 .pilou2 {
   color: black;
 }
-.inputArea input {
+/* .inputArea input {
   flex-grow: 1;
   overflow: hidden;
   border: unset;
@@ -30,14 +125,14 @@
   background: unset;
   font-size: 0.8em;
   font-family: inherit;
-}
-.inputArea input:focus {
+} */
+/* .inputArea input:focus {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-.inputArea input:focus::placeholder {
+} */
+/* .inputArea input:focus::placeholder {
   color: transparent;
-}
-.inputArea button {
+} */
+/* .inputArea button {
   align-self: stretch;
   border: unset;
   border-left: solid 1px var(--colorRed);
@@ -48,11 +143,11 @@
   font-size: inherit;
   font-family: inherit;
   font-weight: 700;
-}
-.inputArea button:hover {
+} */
+/* .inputArea button:hover {
   transition: all 0.25s;
   background-color: rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* responsive Styling for Mobile devices*/
 @media only screen and (min-width: 450px) {

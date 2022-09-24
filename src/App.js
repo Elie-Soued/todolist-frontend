@@ -5,8 +5,8 @@ import LoginPage from "./Components/LoginPage/LoginPage";
 export default function App() {
   return (
     <>
-      <LoginPage></LoginPage>
       <Main></Main>
+      <LoginPage></LoginPage>
     </>
   );
 }
