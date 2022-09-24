@@ -6,9 +6,11 @@ export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [submitButton, setSubmitButton] = useState("Login");
+  let [loginRegister, setLoginOrRegister] = useState("Login");
 
   const createAccount = () => {
     setSubmitButton("Register");
+    setLoginOrRegister("Register");
   };
 
   return (
