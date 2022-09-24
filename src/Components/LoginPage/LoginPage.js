@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import "../NewTaskForm/styles.css";
 import "./style.css";
 import "../TodoTask/styles.css";
+import { doRequest, URLUsers } from "../../ServiceUtils.js";
+
 export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [submitButton, setSubmitButton] = useState("Login");
   let [loginRegister, setLoginOrRegister] = useState("Login");
+
+  const register = async () => {
+    await doRequest("post", URLUsers, { username, password });
+  };
 
   const createAccount = () => {
     setSubmitButton("Register");
@@ -39,6 +45,7 @@ export default function LoginPage() {
             } else {
               setUsername("");
               setPassword("");
+              register();
             }
           }}
         >
