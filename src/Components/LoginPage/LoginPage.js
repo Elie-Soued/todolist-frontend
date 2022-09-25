@@ -49,9 +49,9 @@ export default function LoginPage() {
             }
           }}
         >
-          <div className="pilou">
+          <div className="container">
             <input
-              className="pilou3"
+              className="inputLogin"
               value={username}
               type="text"
               maxlength="40"
@@ -61,7 +61,7 @@ export default function LoginPage() {
               }}
             />
             <input
-              className="pilou3"
+              className="inputLogin"
               value={password}
               type="text"
               maxlength="40"
@@ -71,20 +71,23 @@ export default function LoginPage() {
               }}
             />
 
-            <h4 className="forgotPassword">
+            <h4 className="forgotPasswordContainer">
               <span>
-                <a className="black" href="https://fontawesome.com/license">
+                <a
+                  className="forgotPassword"
+                  href="https://fontawesome.com/license"
+                >
                   Forgot password?
                 </a>{" "}
               </span>
             </h4>
-            <button className="pilou3" type="submit">
+            <button className="inputLogin" type="submit">
               {submitButton}
             </button>
           </div>
         </form>
 
-        <div className="createAccount">
+        <div className="createAccountContainer">
           <h3>
             <span>Not registered yet ? </span>
           </h3>
@@ -92,7 +95,7 @@ export default function LoginPage() {
             <span>
               {" "}
               <h3
-                className="green"
+                className="createAccount"
                 onClick={() => {
                   createAccount();
                 }}
