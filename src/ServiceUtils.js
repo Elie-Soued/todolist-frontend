@@ -3,11 +3,14 @@ import axios from "axios";
 // URL for Deployment
 
 // const URL = "https://todoapi.pilexlaflex.com/todos";
-const URLUsers = "http://localhost:3000/users";
+//const URLRegister = "https://todoapi.pilexlaflex.com/users";
+//const URLLogin = "https://todoapi.pilexlaflex.com/users/login";
 
 // URL for Development
 
 const URL = "http://localhost:3000/todos";
+const URLRegister = "http://localhost:3000/users";
+const URLLogin = "http://localhost:3000/users/login";
 
 const doRequest = async (httpVerb, url, payload) => {
   axios.defaults.headers.post["Content-Type"] =
@@ -21,4 +24,4 @@ const doRequest = async (httpVerb, url, payload) => {
   }
 };
 
-export { doRequest, URL, URLUsers };
+export { doRequest, URL, URLRegister, URLLogin };
