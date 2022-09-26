@@ -2,21 +2,33 @@ import React, { useState } from "react";
 import "../NewTaskForm/styles.css";
 import "./style.css";
 import "../TodoTask/styles.css";
-import { doRequest, URLUsers } from "../../ServiceUtils.js";
+import { doRequest, URLRegister, URLLogin } from "../../ServiceUtils.js";
+import {
+  userNameErrorMsg,
+  userNamePattern,
+  passwordErrorMsg,
+  passwordPattern,
+} from "../../Validation.js";
 
 export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [submitButton, setSubmitButton] = useState("Login");
-  let [loginRegister, setLoginOrRegister] = useState("Login");
 
-  const register = async () => {
-    await doRequest("post", URLUsers, { username, password });
+  const registerOrLogin = async () => {
+    if (submitButton === "Login") {
+      await doRequest("post", URLLogin, { username, password });
+    } else {
+      await doRequest("post", URLRegister, { username, password });
+    }
   };
 
-  const createAccount = () => {
-    setSubmitButton("Register");
-    setLoginOrRegister("Register");
+  const toggleButton = () => {
+    if (submitButton === "Login") {
+      setSubmitButton("Register");
+    } else {
+      setSubmitButton("Login");
+    }
   };
 
   return (
@@ -30,13 +42,6 @@ export default function LoginPage() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            const userNameErrorMsg =
-              "Username should be between 5 to 15 characters and can only contain numeric digits, letters and white space";
-            const passwordErrorMsg =
-              "Password should be between 7 to 15 characters and contain at least one numeric digit and a special character";
-            const userNamePattern = /^[a-zA-Z0-9/\s/ ]{5,15}$/;
-            const passwordPattern =
-              /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
 
             if (!userNamePattern.test(username)) {
               alert(userNameErrorMsg);
@@ -45,7 +50,7 @@ export default function LoginPage() {
             } else {
               setUsername("");
               setPassword("");
-              register();
+              registerOrLogin();
             }
           }}
         >
@@ -97,7 +102,7 @@ export default function LoginPage() {
               <h3
                 className="createAccount"
                 onClick={() => {
-                  createAccount();
+                  toggleButton();
                 }}
               >
                 Create an account
