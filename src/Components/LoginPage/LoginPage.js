@@ -17,9 +17,17 @@ export default function LoginPage() {
 
   const registerOrLogin = async () => {
     if (submitButton === "Login") {
-      await doRequest("post", URLLogin, { username, password });
+      const response = await doRequest("post", URLLogin, {
+        username,
+        password,
+      });
+      const token = response?.data.accessToken;
+      localStorage.setItem("token", token);
     } else {
-      await doRequest("post", URLRegister, { username, password });
+      await doRequest("post", URLRegister, {
+        username,
+        password,
+      });
     }
   };
 
