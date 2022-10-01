@@ -14,10 +14,12 @@ const URLLogin = "http://localhost:3000/users/login";
 
 const doRequest = async (httpVerb, url, payload) => {
   const token = localStorage.getItem("token");
-  if (token) axios.defaults.headers.post["authorization"] = token;
-  axios.defaults.headers.post["Content-Type"] =
+
+  if (token) axios.defaults.headers[httpVerb]["authorization"] = token;
+  axios.defaults.headers[httpVerb]["Content-Type"] =
     "application/json;charset=utf-8";
-  axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+  axios.defaults.headers[httpVerb]["Access-Control-Allow-Origin"] = "*";
+
   try {
     const response = await axios[httpVerb](url, payload);
     return response;
