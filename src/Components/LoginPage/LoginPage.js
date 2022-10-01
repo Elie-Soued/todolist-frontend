@@ -3,6 +3,8 @@ import "../NewTaskForm/styles.css";
 import "./style.css";
 import "../TodoTask/styles.css";
 import { doRequest, URLRegister, URLLogin } from "../../ServiceUtils.js";
+import { useNavigate } from "react-router-dom";
+
 import {
   userNameErrorMsg,
   userNamePattern,
@@ -14,6 +16,7 @@ export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
   let [submitButton, setSubmitButton] = useState("Login");
+  let navigate = useNavigate();
 
   const registerOrLogin = async () => {
     if (submitButton === "Login") {
@@ -23,6 +26,7 @@ export default function LoginPage() {
       });
       const token = response?.data.accessToken;
       localStorage.setItem("token", token);
+      navigate("/todos");
     } else {
       await doRequest("post", URLRegister, {
         username,
