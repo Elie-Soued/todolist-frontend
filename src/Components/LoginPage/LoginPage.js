@@ -26,18 +26,30 @@ export default function LoginPage() {
       username,
       password,
     });
-    setTokenAndNavigate(response);
+
+    if (response.data.code === 400) {
+      setErrorMessage(response.data.message);
+    } else if (response.data.code === 401) {
+      setErrorMessage(response.data.message);
+    } else {
+      setTokenAndNavigate(response);
+    }
   };
 
   const registerOrLogin = async () => {
     if (submitButton === "Login") {
       login();
     } else {
-      await doRequest("post", URLRegister, {
+      const response = await doRequest("post", URLRegister, {
         username,
         password,
       });
-      login();
+
+      if (response.data.code === 403) {
+        setErrorMessage(response.data.message);
+      } else {
+        login();
+      }
     }
   };
 
@@ -95,6 +107,9 @@ export default function LoginPage() {
           <div className="container">
             <input
               className="inputLogin"
+              onClick={() => {
+                setErrorMessage("");
+              }}
               value={username}
               type="text"
               maxlength="40"
@@ -107,6 +122,9 @@ export default function LoginPage() {
             <div className="relative">
               <input
                 className="inputLogin relative"
+                onClick={() => {
+                  setErrorMessage("");
+                }}
                 value={password}
                 type={passwordType}
                 maxlength="40"
