@@ -4,6 +4,7 @@ import "./style.css";
 import "../TodoTask/styles.css";
 import { doRequest, URLRegister, URLLogin } from "../../ServiceUtils.js";
 import { useNavigate } from "react-router-dom";
+import eye from "../../img/eye-solid.svg";
 
 import {
   userNameErrorMsg,
@@ -15,23 +16,27 @@ import {
 export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+  let [passwordType, setPasswordType] = useState("password");
   let [submitButton, setSubmitButton] = useState("Login");
   let navigate = useNavigate();
 
+  const login = async () => {
+    const response = await doRequest("post", URLLogin, {
+      username,
+      password,
+    });
+    setTokenAndNavigate(response);
+  };
+
   const registerOrLogin = async () => {
     if (submitButton === "Login") {
-      const response = await doRequest("post", URLLogin, {
-        username,
-        password,
-      });
-      const token = response?.data.accessToken;
-      localStorage.setItem("token", token);
-      navigate("/todos");
+      login();
     } else {
       await doRequest("post", URLRegister, {
         username,
         password,
       });
+      login();
     }
   };
 
@@ -40,6 +45,21 @@ export default function LoginPage() {
       setSubmitButton("Register");
     } else {
       setSubmitButton("Login");
+    }
+  };
+
+  const setTokenAndNavigate = (response) => {
+    const token = response?.data.accessToken;
+    localStorage.setItem("token", token);
+    navigate("/todos");
+  };
+
+  const togglePasswordType = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      console.log(passwordType);
+    } else {
+      setPasswordType("password");
     }
   };
 
@@ -77,16 +97,28 @@ export default function LoginPage() {
                 setUsername(e.target.value);
               }}
             />
-            <input
-              className="inputLogin"
-              value={password}
-              type="text"
-              maxlength="40"
-              placeholder="Enter Password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+
+            <div className="relative">
+              <input
+                className="inputLogin relative"
+                value={password}
+                type={passwordType}
+                maxlength="40"
+                placeholder="Enter Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+
+              <img
+                className="showPassword absolute"
+                onClick={() => {
+                  togglePasswordType();
+                }}
+                src={eye}
+                alt="SVG"
+              />
+            </div>
 
             <h4 className="forgotPasswordContainer">
               <span>
@@ -100,7 +132,9 @@ export default function LoginPage() {
             </h4>
             <button
               disabled={username === "" || password === ""}
-              className="inputLogin"
+              className={`inputLogin ${
+                submitButton === "Register" ? "registerButton" : ""
+              }`}
               type="submit"
             >
               {submitButton}
