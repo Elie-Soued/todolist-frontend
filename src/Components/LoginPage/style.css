@@ -84,8 +84,21 @@ h3 > span:nth-child(2) {
   background-color: var(--colorGreen);
 }
 
+.relative {
+  width: 100%;
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  top: 50%;
+  right: 4%;
+  color: lightblue;
+}
+
 .showPassword {
-  background-image: url(../../img/eye-solid.svg);
+  width: 1.5rem;
+  cursor: pointer;
 }
 
 .bttn {
