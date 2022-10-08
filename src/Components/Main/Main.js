@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { doRequest, URL } from "../../ServiceUtils.js";
+import { useNavigate } from "react-router-dom";
 import NewTaskForm from "../NewTaskForm/NewTaskForm.js";
 import TodoList from "../TodoList/TodoList.js";
 import "../../App.css";
 
 export default function Main() {
   const [todos, setTodos] = useState([]);
+  let navigate = useNavigate();
 
   const getAllTodos = async () => {
     doRequest("get", URL).then((result) => {
@@ -19,6 +21,11 @@ export default function Main() {
     await doRequest("post", URL, { todo: title });
     const newTodo = { todo: title };
     setTodos([...todos, newTodo]);
+  };
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -36,6 +43,16 @@ export default function Main() {
       <NewTaskForm addTodoHandler={addTodo} />
 
       <TodoList todos={todos} setTodos={setTodos}></TodoList>
+
+      <button
+        onClick={() => {
+          logOut();
+        }}
+        className="inputLogin"
+        type="submit"
+      >
+        Logout
+      </button>
 
       <i className="license">
         icons by fontawesome -{" "}
