@@ -79,6 +79,11 @@ h3 > span:nth-child(2) {
   font-family: var(--font_Roboto);
 }
 
+.registerButton {
+  color: white;
+  background-color: var(--colorGreen);
+}
+
 .showPassword {
   background-image: url(../../img/eye-solid.svg);
 }
