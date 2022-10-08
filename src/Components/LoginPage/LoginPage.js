@@ -98,7 +98,11 @@ export default function LoginPage() {
                 </a>{" "}
               </span>
             </h4>
-            <button className="inputLogin" type="submit">
+            <button
+              disabled={username === "" || password === ""}
+              className="inputLogin"
+              type="submit"
+            >
               {submitButton}
             </button>
           </div>
