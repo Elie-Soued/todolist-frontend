@@ -18,6 +18,7 @@ export default function LoginPage() {
   let [password, setPassword] = useState("");
   let [passwordType, setPasswordType] = useState("password");
   let [submitButton, setSubmitButton] = useState("Login");
+  let [errorMessage, setErrorMessage] = useState("");
   let navigate = useNavigate();
 
   const login = async () => {
@@ -71,14 +72,19 @@ export default function LoginPage() {
           <span>todo</span>
           <span>LIST</span>
         </h1>
+
+        <span className="errorSpan">
+          <h3>{errorMessage}</h3>
+        </span>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
 
             if (!userNamePattern.test(username)) {
-              alert(userNameErrorMsg);
+              setErrorMessage(userNameErrorMsg);
             } else if (!passwordPattern.test(password)) {
-              alert(passwordErrorMsg);
+              setErrorMessage(passwordErrorMsg);
             } else {
               setUsername("");
               setPassword("");
@@ -132,7 +138,7 @@ export default function LoginPage() {
             </h4>
             <button
               disabled={username === "" || password === ""}
-              className={`inputLogin ${
+              className={`inputLogin  ${
                 submitButton === "Register" ? "registerButton" : ""
               }`}
               type="submit"

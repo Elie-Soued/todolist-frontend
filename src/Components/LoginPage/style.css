@@ -39,6 +39,14 @@ button {
   font-size: 18px;
 }
 
+.errorSpan {
+  min-height: 5rem;
+}
+
+button {
+  cursor: pointer;
+}
+
 h3 {
   font-family: var(--font_Rubik);
   text-transform: capitalize;
@@ -82,6 +90,10 @@ h3 > span:nth-child(2) {
 .registerButton {
   color: white;
   background-color: var(--colorGreen);
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .relative {
