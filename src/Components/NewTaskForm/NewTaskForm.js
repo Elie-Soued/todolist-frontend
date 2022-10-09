@@ -7,7 +7,7 @@ export default function NewTaskForm({ addTodoHandler }) {
   return (
     <>
       <form
-        className="inputArea"
+        className="inputArea inputAreaContainer"
         onSubmit={(e) => {
           e.preventDefault();
 
