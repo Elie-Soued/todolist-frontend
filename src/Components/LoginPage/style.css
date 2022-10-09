@@ -39,6 +39,14 @@ button {
   font-size: 18px;
 }
 
+.errorSpan {
+  min-height: 5rem;
+}
+
+button {
+  cursor: pointer;
+}
+
 h3 {
   font-family: var(--font_Rubik);
   text-transform: capitalize;
@@ -79,8 +87,30 @@ h3 > span:nth-child(2) {
   font-family: var(--font_Roboto);
 }
 
+.registerButton {
+  color: white;
+  background-color: var(--colorGreen);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.relative {
+  width: 100%;
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  top: 50%;
+  right: 4%;
+  color: lightblue;
+}
+
 .showPassword {
-  background-image: url(../../img/eye-solid.svg);
+  width: 1.5rem;
+  cursor: pointer;
 }
 
 .bttn {

@@ -3,6 +3,9 @@ import "../NewTaskForm/styles.css";
 import "./style.css";
 import "../TodoTask/styles.css";
 import { doRequest, URLRegister, URLLogin } from "../../ServiceUtils.js";
+import { useNavigate } from "react-router-dom";
+import eye from "../../img/eye-solid.svg";
+
 import {
   userNameErrorMsg,
   userNamePattern,
@@ -13,13 +16,40 @@ import {
 export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+  let [passwordType, setPasswordType] = useState("password");
   let [submitButton, setSubmitButton] = useState("Login");
+  let [errorMessage, setErrorMessage] = useState("");
+  let navigate = useNavigate();
+
+  const login = async () => {
+    const response = await doRequest("post", URLLogin, {
+      username,
+      password,
+    });
+
+    if (response.data.code === 404) {
+      setErrorMessage(response.data.message);
+    } else if (response.data.code === 401) {
+      setErrorMessage(response.data.message);
+    } else {
+      setTokenAndNavigate(response);
+    }
+  };
 
   const registerOrLogin = async () => {
     if (submitButton === "Login") {
-      await doRequest("post", URLLogin, { username, password });
+      login();
     } else {
-      await doRequest("post", URLRegister, { username, password });
+      const response = await doRequest("post", URLRegister, {
+        username,
+        password,
+      });
+
+      if (response.data.code === 409) {
+        setErrorMessage(response.data.message);
+      } else {
+        login();
+      }
     }
   };
 
@@ -31,6 +61,21 @@ export default function LoginPage() {
     }
   };
 
+  const setTokenAndNavigate = (response) => {
+    const token = response?.data.accessToken;
+    localStorage.setItem("token", token);
+    navigate("/todos");
+  };
+
+  const togglePasswordType = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      console.log(passwordType);
+    } else {
+      setPasswordType("password");
+    }
+  };
+
   return (
     <>
       <div className="main ">
@@ -39,14 +84,19 @@ export default function LoginPage() {
           <span>todo</span>
           <span>LIST</span>
         </h1>
+
+        <span className="errorSpan">
+          <h3>{errorMessage}</h3>
+        </span>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
 
             if (!userNamePattern.test(username)) {
-              alert(userNameErrorMsg);
+              setErrorMessage(userNameErrorMsg);
             } else if (!passwordPattern.test(password)) {
-              alert(passwordErrorMsg);
+              setErrorMessage(passwordErrorMsg);
             } else {
               setUsername("");
               setPassword("");
@@ -57,6 +107,9 @@ export default function LoginPage() {
           <div className="container">
             <input
               className="inputLogin"
+              onClick={() => {
+                setErrorMessage("");
+              }}
               value={username}
               type="text"
               maxlength="40"
@@ -65,18 +118,33 @@ export default function LoginPage() {
                 setUsername(e.target.value);
               }}
             />
-            <input
-              className="inputLogin"
-              value={password}
-              type="text"
-              maxlength="40"
-              placeholder="Enter Password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
 
-            <h4 className="forgotPasswordContainer">
+            <div className="relative">
+              <input
+                className="inputLogin relative"
+                onClick={() => {
+                  setErrorMessage("");
+                }}
+                value={password}
+                type={passwordType}
+                maxlength="40"
+                placeholder="Enter Password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+
+              <img
+                className="showPassword absolute"
+                onClick={() => {
+                  togglePasswordType();
+                }}
+                src={eye}
+                alt="SVG"
+              />
+            </div>
+
+            {/* <h4 className="forgotPasswordContainer">
               <span>
                 <a
                   className="forgotPassword"
@@ -85,8 +153,14 @@ export default function LoginPage() {
                   Forgot password?
                 </a>{" "}
               </span>
-            </h4>
-            <button className="inputLogin" type="submit">
+            </h4> */}
+            <button
+              disabled={username === "" || password === ""}
+              className={`inputLogin  ${
+                submitButton === "Register" ? "registerButton" : ""
+              }`}
+              type="submit"
+            >
               {submitButton}
             </button>
           </div>
