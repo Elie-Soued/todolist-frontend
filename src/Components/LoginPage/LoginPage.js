@@ -27,7 +27,7 @@ export default function LoginPage() {
       password,
     });
 
-    if (response.data.code === 400) {
+    if (response.data.code === 404) {
       setErrorMessage(response.data.message);
     } else if (response.data.code === 401) {
       setErrorMessage(response.data.message);
@@ -45,7 +45,7 @@ export default function LoginPage() {
         password,
       });
 
-      if (response.data.code === 403) {
+      if (response.data.code === 409) {
         setErrorMessage(response.data.message);
       } else {
         login();
