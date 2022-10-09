@@ -22,9 +22,9 @@ button {
   flex-direction: column;
 }
 
-/* .formContainer {
-  width: 50%;
-} */
+.hide {
+  display: none;
+}
 
 .inputLogin {
   text-align: center;

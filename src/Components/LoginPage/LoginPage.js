@@ -19,6 +19,7 @@ export default function LoginPage() {
   let [passwordType, setPasswordType] = useState("password");
   let [submitButton, setSubmitButton] = useState("Login");
   let [errorMessage, setErrorMessage] = useState("");
+  let [hide, setHide] = useState(false);
   let navigate = useNavigate();
 
   const login = async () => {
@@ -56,6 +57,7 @@ export default function LoginPage() {
   const toggleButton = () => {
     if (submitButton === "Login") {
       setSubmitButton("Register");
+      setHide(true);
     } else {
       setSubmitButton("Login");
     }
@@ -167,7 +169,7 @@ export default function LoginPage() {
             </div>
           </form>
 
-          <div className="createAccountContainer">
+          <div className={`${hide ? "hide" : "createAccountContainer"}`}>
             <h3>
               <span>Not registered yet ? </span>
             </h3>
