@@ -144,7 +144,7 @@ export default function LoginPage() {
               />
             </div>
 
-            <h4 className="forgotPasswordContainer">
+            {/* <h4 className="forgotPasswordContainer">
               <span>
                 <a
                   className="forgotPassword"
@@ -153,7 +153,7 @@ export default function LoginPage() {
                   Forgot password?
                 </a>{" "}
               </span>
-            </h4>
+            </h4> */}
             <button
               disabled={username === "" || password === ""}
               className={`inputLogin  ${
