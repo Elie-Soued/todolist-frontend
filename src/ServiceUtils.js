@@ -2,15 +2,15 @@ import axios from "axios";
 
 // URL for Deployment
 
-// const URL = "https://todoapi.pilexlaflex.com/todos";
-//const URLRegister = "https://todoapi.pilexlaflex.com/users";
-//const URLLogin = "https://todoapi.pilexlaflex.com/users/login";
+const URL = "https://todoapi.pilexlaflex.com/todos";
+const URLRegister = "https://todoapi.pilexlaflex.com/users";
+const URLLogin = "https://todoapi.pilexlaflex.com/users/login";
 
 // URL for Development
 
-const URL = "http://localhost:3000/todos";
-const URLRegister = "http://localhost:3000/users";
-const URLLogin = "http://localhost:3000/users/login";
+// const URL = "http://localhost:3000/todos";
+// const URLRegister = "http://localhost:3000/users";
+// const URLLogin = "http://localhost:3000/users/login";
 
 const doRequest = async (httpVerb, url, payload) => {
   const token = localStorage.getItem("token");
