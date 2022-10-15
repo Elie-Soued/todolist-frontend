@@ -18,8 +18,9 @@ export default function Main() {
   };
 
   const addTodo = async (title) => {
-    await doRequest("post", URL, { todo: title });
-    const newTodo = { todo: title };
+    const response = await doRequest("post", URL, { todo: title });
+    const id = response.data.data.id;
+    const newTodo = { todo: title, id };
     setTodos([...todos, newTodo]);
   };
 

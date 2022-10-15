@@ -20,7 +20,7 @@ export default function TodoTask({
       }`}
       onClick={(e) => {
         if (!editMode && !e.target.classList.contains("bttn")) {
-          checkTaskHandler();
+          checkTaskHandler(id);
         }
       }}
     >
@@ -34,7 +34,7 @@ export default function TodoTask({
           <button
             className="bttn delete"
             onClick={() => {
-              deleteTodoHandler();
+              deleteTodoHandler(id);
             }}
           ></button>
         </>
@@ -49,7 +49,7 @@ export default function TodoTask({
           <button
             className="bttn confirm"
             onClick={() => {
-              editTodoHandler(inputValue);
+              editTodoHandler(id, inputValue);
               setEditMode(false);
             }}
           ></button>

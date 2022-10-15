@@ -31,14 +31,14 @@ export default function TodoList({ todos, setTodos }) {
             id={todo.id}
             title={todo.todo}
             checked={todo.checked}
-            deleteTodoHandler={() => {
-              deleteTodo(todo.id);
+            deleteTodoHandler={(id) => {
+              deleteTodo(id);
             }}
-            editTodoHandler={(title) => {
-              editTodo(todo.id, title);
+            editTodoHandler={(todo, id) => {
+              editTodo(todo, id);
             }}
-            checkTaskHandler={() => {
-              checkTask(todo.id);
+            checkTaskHandler={(id) => {
+              checkTask(id);
             }}
           />
         ))}
