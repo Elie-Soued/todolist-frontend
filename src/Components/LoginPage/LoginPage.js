@@ -19,6 +19,7 @@ export default function LoginPage() {
   let [passwordType, setPasswordType] = useState("password");
   let [submitButton, setSubmitButton] = useState("Login");
   let [errorMessage, setErrorMessage] = useState("");
+  let [hide, setHide] = useState(false);
   let navigate = useNavigate();
 
   const login = async () => {
@@ -56,6 +57,7 @@ export default function LoginPage() {
   const toggleButton = () => {
     if (submitButton === "Login") {
       setSubmitButton("Register");
+      setHide(true);
     } else {
       setSubmitButton("Login");
     }
@@ -89,62 +91,63 @@ export default function LoginPage() {
           <h3>{errorMessage}</h3>
         </span>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
+        <div className="formContainer">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
 
-            if (!userNamePattern.test(username)) {
-              setErrorMessage(userNameErrorMsg);
-            } else if (!passwordPattern.test(password)) {
-              setErrorMessage(passwordErrorMsg);
-            } else {
-              setUsername("");
-              setPassword("");
-              registerOrLogin();
-            }
-          }}
-        >
-          <div className="container">
-            <input
-              className="inputLogin"
-              onClick={() => {
-                setErrorMessage("");
-              }}
-              value={username}
-              type="text"
-              maxlength="40"
-              placeholder="Enter username"
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-
-            <div className="relative">
+              if (!userNamePattern.test(username)) {
+                setErrorMessage(userNameErrorMsg);
+              } else if (!passwordPattern.test(password)) {
+                setErrorMessage(passwordErrorMsg);
+              } else {
+                setUsername("");
+                setPassword("");
+                registerOrLogin();
+              }
+            }}
+          >
+            <div className="container">
               <input
-                className="inputLogin relative"
+                className="inputLogin"
                 onClick={() => {
                   setErrorMessage("");
                 }}
-                value={password}
-                type={passwordType}
+                value={username}
+                type="text"
                 maxlength="40"
-                placeholder="Enter Password"
+                placeholder="Enter username"
                 onChange={(e) => {
-                  setPassword(e.target.value);
+                  setUsername(e.target.value);
                 }}
               />
 
-              <img
-                className="showPassword absolute"
-                onClick={() => {
-                  togglePasswordType();
-                }}
-                src={eye}
-                alt="SVG"
-              />
-            </div>
+              <div className="relative">
+                <input
+                  className="inputLogin relative"
+                  onClick={() => {
+                    setErrorMessage("");
+                  }}
+                  value={password}
+                  type={passwordType}
+                  maxlength="40"
+                  placeholder="Enter Password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
 
-            {/* <h4 className="forgotPasswordContainer">
+                <img
+                  className="showPassword absolute"
+                  onClick={() => {
+                    togglePasswordType();
+                  }}
+                  src={eye}
+                  alt="SVG"
+                />
+              </div>
+
+              {/* <h4 className="forgotPasswordContainer">
               <span>
                 <a
                   className="forgotPassword"
@@ -154,40 +157,41 @@ export default function LoginPage() {
                 </a>{" "}
               </span>
             </h4> */}
-            <button
-              disabled={username === "" || password === ""}
-              className={`inputLogin  ${
-                submitButton === "Register" ? "registerButton" : ""
-              }`}
-              type="submit"
-            >
-              {submitButton}
-            </button>
-          </div>
-        </form>
-
-        <div className="createAccountContainer">
-          <h3>
-            <span>Not registered yet ? </span>
-          </h3>
-          <h3>
-            <span>
-              {" "}
-              <h3
-                className="createAccount"
-                onClick={() => {
-                  toggleButton();
-                }}
+              <button
+                disabled={username === "" || password === ""}
+                className={`inputLogin  ${
+                  submitButton === "Register" ? "registerButton" : ""
+                }`}
+                type="submit"
               >
-                Create an account
-              </h3>{" "}
-            </span>
-          </h3>
+                {submitButton}
+              </button>
+            </div>
+          </form>
+
+          <div className={`${hide ? "hide" : "createAccountContainer"}`}>
+            <h3>
+              <span>Not registered yet ? </span>
+            </h3>
+            <h3>
+              <span>
+                {" "}
+                <h3
+                  className="createAccount"
+                  onClick={() => {
+                    toggleButton();
+                  }}
+                >
+                  Create an account
+                </h3>{" "}
+              </span>
+            </h3>
+          </div>
+          <i className="license">
+            icons by fontawesome -{" "}
+            <a href="https://fontawesome.com/license">license</a>
+          </i>
         </div>
-        <i className="license">
-          icons by fontawesome -{" "}
-          <a href="https://fontawesome.com/license">license</a>
-        </i>
       </div>
     </>
   );
