@@ -115,7 +115,7 @@ export default function LoginPage() {
                 }}
                 value={username}
                 type="text"
-                maxlength="40"
+                maxlength="15"
                 placeholder="Enter username"
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -130,7 +130,7 @@ export default function LoginPage() {
                   }}
                   value={password}
                   type={passwordType}
-                  maxlength="40"
+                  maxlength="15"
                   placeholder="Enter Password"
                   onChange={(e) => {
                     setPassword(e.target.value);
