@@ -41,6 +41,7 @@ button {
   height: 3em;
   background-color: var(--colorPaleRed);
   font-size: 18px;
+  border: 1px solid black;
 }
 
 .errorSpan {
