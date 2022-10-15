@@ -6,13 +6,6 @@ import { doRequest, URLRegister, URLLogin } from "../../ServiceUtils.js";
 import { useNavigate } from "react-router-dom";
 import eye from "../../img/eye-solid.svg";
 
-import {
-  userNameErrorMsg,
-  userNamePattern,
-  passwordErrorMsg,
-  passwordPattern,
-} from "../../Validation.js";
-
 export default function LoginPage() {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
@@ -95,11 +88,10 @@ export default function LoginPage() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-
-              if (!userNamePattern.test(username)) {
-                setErrorMessage(userNameErrorMsg);
-              } else if (!passwordPattern.test(password)) {
-                setErrorMessage(passwordErrorMsg);
+              if (username.length < 5) {
+                setErrorMessage("username is too short");
+              } else if (password.length < 5) {
+                setErrorMessage("password is too short");
               } else {
                 setUsername("");
                 setPassword("");
