@@ -175,7 +175,7 @@ export default function LoginPage() {
 
           <div className={`${hide ? "hide" : "createAccountContainer"}`}>
             <h3>
-              <span>Not registered yet ? </span>
+              <span>Not registered yet? </span>
             </h3>
             <h3>
               <span>
