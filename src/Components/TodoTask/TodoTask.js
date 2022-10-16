@@ -45,6 +45,12 @@ export default function TodoTask({
             value={inputValue}
             autoFocus
             onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={(event) => {
+              if (event.code === "Enter" || event.code === "NumpadEnter") {
+                editTodoHandler(id, inputValue);
+                setEditMode(false);
+              }
+            }}
           />
           <button
             className="bttn confirm"
