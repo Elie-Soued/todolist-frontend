@@ -45,6 +45,11 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.addIcon {
+  width: 1.5rem;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 480px) {
   .inputAreaContainer {
     /* border: 4px dashed red; */

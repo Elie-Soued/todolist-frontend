@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
+import addIcon from "../../img/add-icon-png-2486.png";
 
 export default function NewTaskForm({ addTodoHandler }) {
   let [newTaskTitle, setNewTaskTitle] = useState("");
@@ -28,7 +29,7 @@ export default function NewTaskForm({ addTodoHandler }) {
         />
 
         <button type="submit" disabled={newTaskTitle === ""}>
-          Add
+          <img className="addIcon" src={addIcon} alt="add"></img>
         </button>
       </form>
     </>
