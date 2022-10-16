@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../NewTaskForm/styles.css";
 import "./style.css";
 import "../TodoTask/styles.css";
@@ -14,6 +14,8 @@ export default function LoginPage() {
   let [errorMessage, setErrorMessage] = useState("");
   let [hide, setHide] = useState(false);
   let navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   const login = async () => {
     const response = await doRequest("post", URLLogin, {
@@ -70,6 +72,16 @@ export default function LoginPage() {
       setPasswordType("password");
     }
   };
+
+  if (token) {
+    navigate("/todos");
+  }
+
+  useEffect(() => {
+    if (token) {
+      navigate("/todos");
+    }
+  }, []);
 
   return (
     <>
