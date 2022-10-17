@@ -80,6 +80,8 @@ export default function LoginPage() {
   useEffect(() => {
     if (token) {
       navigate("/todos");
+    } else {
+      navigate("/");
     }
   }, []);
 
