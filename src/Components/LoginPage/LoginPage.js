@@ -73,15 +73,9 @@ export default function LoginPage() {
     }
   };
 
-  if (token) {
-    navigate("/todos");
-  }
-
   useEffect(() => {
     if (token) {
       navigate("/todos");
-    } else {
-      navigate("/");
     }
   }, []);
 

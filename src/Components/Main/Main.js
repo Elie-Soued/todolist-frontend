@@ -8,6 +8,7 @@ import "../../App.css";
 export default function Main() {
   const [todos, setTodos] = useState([]);
   let navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const getAllTodos = async () => {
     doRequest("get", URL).then((result) => {
@@ -31,6 +32,12 @@ export default function Main() {
 
   useEffect(() => {
     getAllTodos();
+  }, []);
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
   }, []);
 
   return (
